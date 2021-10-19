@@ -1,12 +1,14 @@
 package hibernate.demo;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import hibernate.demo.entity.Student;
 
-public class CreateStudent {
+public class ReadStudent3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -16,10 +18,16 @@ public class CreateStudent {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			Student stu = new Student("Akash", "Lal", "beingakscool@code.com");
 			session.beginTransaction();
-			session.save(stu);
-			session.getTransaction().commit();
+			@SuppressWarnings("unchecked")
+			List<Student> st = session.createQuery("from Student where lastName = 'Saha' or firstName='Akashdeep' ").getResultList();
+			if(st!=null)
+				{
+					for(Student s : st)
+						System.out.println(s);
+				}
+			else
+				System.out.println("No Object Found");
 			
 		} finally {
 			// TODO: handle finally clause
