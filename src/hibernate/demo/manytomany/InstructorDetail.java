@@ -1,4 +1,4 @@
-package hibernate.demo.onetoone.uni;
+package hibernate.demo.manytomany;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
